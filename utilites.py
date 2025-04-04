@@ -11,8 +11,8 @@ IDEALS = {
     "chaotic" : "Freedom",
     "neutral" : "Knowledge",
     "good" : "Hope",
-    None : "Self-Reliance", 
-    None : "Adaptability",
+    "all1" : "Self-Reliance", 
+    "all2" : "Adaptability",
 
 }
 FLAWS = ["I find it hard to stay in one place or with one group for too long.", "I embellish my stories… a lot.", 
