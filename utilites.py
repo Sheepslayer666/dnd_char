@@ -30,7 +30,7 @@ evil_titles = [" the destroyer", " the wordeater", " the dreadful", " the imp"]
 good_titles = [" the goodwilling", " the heavenly", " the great", " hero of the west"]
 origin = ["a village", "a city", "a tavern", "a barn", "the wildernsess"]
 places = ["tavern", "smallhold", "mansion", "house"]
-problems = ["beaten by ", "irritated by the ", "into the debt of "]
-cause = ["the vampires", "the mayor", "a small group of goblins"]
-background_gener = f"""He was born in {random.choice(origin)}, had to leave his families beloved {random.choice(places)}, becuse of the 
+problems = ["beaten by ", "into the debt of ", "a bad fight with "]
+cause = ["the vampires", "the mayor", "a small group of goblins", "a lonely necromancer", "a group of bantis"]
+background_gener = f"""He was born in {random.choice(origin)}, had to leave his family's beloved {random.choice(places)}, becuse of the 
 unexpected event of getting {random.choice(problems)}{random.choice(cause)}"""

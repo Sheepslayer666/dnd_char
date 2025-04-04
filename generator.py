@@ -4,16 +4,17 @@ import utilites
 #Randomly schuffles the standard array and makes a dictionary with the skills
 random.shuffle(utilites.STANDARD_ARRAY)
 skill_set_ply = {utilites.SKILLS[i]: utilites.STANDARD_ARRAY[i] for i in range(len(utilites.SKILLS))} 
+modifyer_set = {utilites.SKILLS[i]: utilites.STANDARD_ARRAY[i] for i in range(len(utilites.SKILLS))} 
 summary_ply = None
-spices_ply = input("Do you want to generate a human a dwarf or an elf?: ")
-alligment_ply = input("Do you have an evil, good or neutral evil?: ")
+"""spices_ply = input("Do you want to generate a human a dwarf or an elf?: ")
+alligment_ply = input("Do you have an evil, good or neutral evil?: ")"""
 #Unused code yet
 #porpuse = input("npc or villian?: ")
 #Constant vaules for testing
-"""spices_ply = "elf"
+spices_ply = "elf"
 alligment_ply = "neutral"
 porpuse = "npc"
-"""
+
 #Based on the good evil vlaies selects a random vlaue from the law chaos scale
 if alligment_ply == "good":
     random.shuffle(utilites.ALLIGNMENT_GOOD)
@@ -89,12 +90,25 @@ def create_summary():
 
 summary_ply = create_summary()
 
+def modifier_count():
+        for i in skill_set_ply:
+            if modifyer_set[i] >= 14:
+                modifyer_set[i] = 2
+            if 13 >= modifyer_set[i] >= 12:
+                modifyer_set[i] = 1
+            if 11 >= modifyer_set[i] >= 10:
+                modifyer_set[i] = 0
+            if 9 >= modifyer_set[i] >= 8:
+                modifyer_set[i] = 0
+        return modifyer_set
+
 
 flaw_ply = "Flaws: \n" + random.choice(utilites.FLAWS)
 bonds_ply = "Bonds: \n" + random.choice(utilites.BONDS)
 person_ply = "Traits: \n" + '\n'.join(random.sample(utilites.PERSONALITY_TRAIS, 2))
+modifier_ply = modifier_count()
 ideal_ply = "Ideal: " + background_ply
 
 f = open(f"{name_ply}.txt", "w")
-f.write(("%s \n \n %s \n \n %s \n \n %s \n \n %s \n %s \n %s\n \n %s \n" % (name_ply,create_summary(), utilites.background_gener, ideal_ply,flaw_ply,bonds_ply,person_ply, skill_set_ply)))
+f.write(("%s \n \n %s \n \n %s \n \n %s \n \n %s \n %s \n %s\n \n %s \n %s \n" % (name_ply,create_summary(), utilites.background_gener, ideal_ply,flaw_ply,bonds_ply,person_ply, skill_set_ply, modifier_ply)))
 f.close()
