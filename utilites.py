@@ -1,4 +1,7 @@
+import random
+
 STANDARD_ARRAY = [15, 14, 13, 12, 10, 8]
+name_ply = ""
 ALLIGNMENT_GOOD = ["Lawful good", "Neutral good", "Chaotic good"]
 ALLIGNMENT_EVIL = ["Lawful evil", "Neutral evil", "Neutral evil"]
 ALLIGNMENT_NEUT = ["Lawful neutral", "True Neutral", "Chaotic neutral"]
@@ -12,8 +15,7 @@ IDEALS = {
     "neutral" : "Knowledge",
     "good" : "Hope",
     "all1" : "Self-Reliance", 
-    "all2" : "Adaptability",
-
+    "all2" : "Adaptability"
 }
 FLAWS = ["I find it hard to stay in one place or with one group for too long.", "I embellish my stories… a lot.", 
 "I trust too easily—or not at all.", "I avoid conflict, even when I should stand my ground.", "I’m haunted by memories of a past I try to forget."]
@@ -22,11 +24,13 @@ BONDS = ["I owe a great debt to someone who once saved my life.", "I’m searchi
 human_given_name = ["Frederic", "Goldwyn", "Bob", "Billard", "Rudolf", "Bloodwyn", "Gomez"]
 dwarf_given_name = ["Olin", "Brewin", "Dalin", "Thorin", "Thorlof", "Arnulf"]
 elf_given_name = ["Dalion", "Tylion", "Quillion", "Cyndrion"]
-surenames_1 = ["Iron", "Horse", "Tree", "Beer", "Wolf", "Bow", "Light", "Fire", "Oak"]
-surenames_2 = ["master", "caster", "killer", "foe", "hand", "frined", "traveller", "walker", "eater"]
+surenames_1 = ["Iron", "Horse", "Tree", "Beer", "Wolf", "Bow", "Light", "Fire", "Oak", "Deer", "Gold"]
+surenames_2 = ["master", "caster", "killer", "foe", "hand", "frined", "traveller", "walker", "eater", "dreamer"]
 evil_titles = [" the destroyer", " the wordeater", " the dreadful", " the imp"]
 good_titles = [" the goodwilling", " the heavenly", " the great", " hero of the west"]
-
-background_gener = """You’ve spent your life drifting from place to place, picking up odds and ends of knowledge and skill.
- When you come to a new town, you can usually find lodging and modest work in exchange for stories, songs, or simple services. 
- Locals are often willing to share information or assistance, trusting in your adaptable nature."""
+origin = ["a village", "a city", "a tavern", "a barn", "the wildernsess"]
+places = ["tavern", "smallhold", "mansion", "house"]
+problems = ["beaten by ", "irritated by the ", "into the debt of "]
+cause = ["the vampires", "the mayor", "a small group of goblins"]
+background_gener = f"""He was born in {random.choice(origin)}, had to leave his families beloved {random.choice(places)}, becuse of the 
+unexpected event of getting {random.choice(problems)}{random.choice(cause)}"""

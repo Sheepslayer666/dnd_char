@@ -1,18 +1,19 @@
 import random
 import utilites
 
-
 #Randomly schuffles the standard array and makes a dictionary with the skills
 random.shuffle(utilites.STANDARD_ARRAY)
 skill_set_ply = {utilites.SKILLS[i]: utilites.STANDARD_ARRAY[i] for i in range(len(utilites.SKILLS))} 
-
+summary_ply = None
 spices_ply = input("Do you want to generate a human a dwarf or an elf?: ")
 alligment_ply = input("Do you have an evil, good or neutral evil?: ")
-porpuse = input("npc or villian?: ")
+#Unused code yet
+#porpuse = input("npc or villian?: ")
+#Constant vaules for testing
 """spices_ply = "elf"
 alligment_ply = "neutral"
-porpuse = "npc"""
-
+porpuse = "npc"
+"""
 #Based on the good evil vlaies selects a random vlaue from the law chaos scale
 if alligment_ply == "good":
     random.shuffle(utilites.ALLIGNMENT_GOOD)
@@ -38,50 +39,62 @@ def name_genrator():
     #Assignes a title or surename based on the allignment
     if alligment_ply == "evil":
         fullname = givenname + random.choice(utilites.evil_titles)
-        print(fullname)
     elif alligment_ply == "neutral":
         fullname =givenname + " " + surename
-        print(fullname)
     elif alligment_ply == "good":
         fullname = givenname + random.choice(utilites.good_titles)
-        print(fullname)
-    #Gives a short description of the NPC based on allignments
-    #TODO have be moved for the background generation
-    if alligment_ply == "evil":
-        print(f"{fullname}" + " was feared")
-    elif alligment_ply == "neutral":
-        print(f"{fullname}" + " was okay, i mean okay notring special")
-    elif alligment_ply == "neutral":
-        print(f"{fullname}" + " was a wonderful person")
     return fullname
 
+name_ply = name_genrator()
 
-def backgroung_generator():
+def ideal_generator():
     #Generates randomised backgorund
-    flaw_ply = random.choice(utilites.FLAWS)
-    bonds_ply = random.choice(utilites.BONDS)
-    person_ply = random.sample(utilites.PERSONALITY_TRAIS, 2)
-    general_ideal1 = utilites.IDEALS.get("all1")
-    general_ideal2 = utilites.IDEALS.get("all2")
     ideal_list = []
     ideal_list.append(utilites.IDEALS.get("all1"))
     ideal_list.append(utilites.IDEALS.get("all2"))
-    print(selected_allignment)
     #Selects one allignment convinient ideal
     if "chaotic" in selected_allignment:
         ideal_list.append(utilites.IDEALS.get("chaotic"))
         ideal_ply = random.choice(ideal_list)
-        print(ideal_ply)
     if "neutral" in selected_allignment:
         ideal_list.append(utilites.IDEALS.get("neutral"))
         ideal_ply = random.choice(ideal_list)
-        print(ideal_ply)
     if "good" in selected_allignment:
         ideal_list.append(utilites.IDEALS.get("good"))
         ideal_ply = random.choice(ideal_list)
-        print(ideal_ply)
+    else:
+        ideal_ply = random.choice(list(utilites.IDEALS.values()))
+    return ideal_ply
 
-name_genrator()
-backgroung_generator()
-print(skill_set_ply)
+background_ply =ideal_generator()
 
+def create_summary():
+    if alligment_ply == "evil":
+        summary_ply = f"{name_ply}" + f" was a feared {spices_ply}"
+    elif alligment_ply == "neutral":
+        summary_ply = f"{name_ply}" + f" was an okay {spices_ply}"
+    elif alligment_ply == "good":
+        summary_ply = f"{name_ply}" + f" was a wonderful {spices_ply}"
+    if background_ply == "Knowledge":
+        summary_ply = summary_ply + " who always seek Knowledge"
+    elif background_ply == "Freedom":
+        summary_ply = summary_ply + " who always fights for freedom"
+    elif background_ply == "Hope":
+        summary_ply = summary_ply + " who never loose hope"
+    elif background_ply == "Self-Reliance":
+        summary_ply = summary_ply + " who belives in self-reliance"
+    elif background_ply == "Adaptability":
+        summary_ply = summary_ply + " who is a true survivor"
+    return summary_ply
+
+summary_ply = create_summary()
+
+
+flaw_ply = "Flaws: \n" + random.choice(utilites.FLAWS)
+bonds_ply = "Bonds: \n" + random.choice(utilites.BONDS)
+person_ply = "Traits: \n" + '\n'.join(random.sample(utilites.PERSONALITY_TRAIS, 2))
+ideal_ply = "Ideal: " + background_ply
+
+f = open(f"{name_ply}.txt", "w")
+f.write(("%s \n \n %s \n \n %s \n \n %s \n \n %s \n %s \n %s\n \n %s \n" % (name_ply,create_summary(), utilites.background_gener, ideal_ply,flaw_ply,bonds_ply,person_ply, skill_set_ply)))
+f.close()
