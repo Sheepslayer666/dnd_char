@@ -5,12 +5,9 @@ import utilites
 random.shuffle(utilites.STANDARD_ARRAY)
 skill_set_ply = {utilites.SKILLS[i]: utilites.STANDARD_ARRAY[i] for i in range(len(utilites.SKILLS))} 
 
-#spices_ply = input("Do you want to generate a human a dwarf or an elf?: ")
-spices_ply = "human"
-#alligment_ply = input("Do you have an evil, good or neutral evil?: ")
-alligment_ply = "neutral"
-#porpuse = input("npc or villian?: ")
-porpuse = "npc"
+spices_ply = input("Do you want to generate a human a dwarf or an elf?: ")
+alligment_ply = input("Do you have an evil, good or neutral evil?: ")
+porpuse = input("npc or villian?: ")
 
 
 if alligment_ply == "good":
@@ -57,5 +54,6 @@ def backgroung_generator():
         print(f"{fullname}" + " was a wonderful person")
 
 name_genrator()
+backgroung_generator()
 print(skill_set_ply)
 
