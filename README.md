@@ -4,5 +4,5 @@
 - Only supports the free rulebook species
 ### ToDo:
 - Add more costumization opportunity
-- Add more speces
+- Add more species
 - Background story generation
