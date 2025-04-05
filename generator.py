@@ -8,14 +8,14 @@ skill_set_ply = {utilites.SKILLS[i]: utilites.STANDARD_ARRAY[i] for i in range(l
 modifyer_set = skill_set_ply.copy()
 summary_ply = None
 
-spices_ply = input("Do you want to generate a human a dwarf a halfling or an elf?: ")
+"""spices_ply = input("Do you want to generate a human a dwarf a halfling or an elf?: ")
 alligment_ply = input("Do you have an evil, good or neutral evil?: ")
-porpuse = input("npc or villian?: ")
+porpuse = input("npc or villian?: ")"""
 #Unused code yet
 #Constant vaules for testing
-"""spices_ply = "elf"
+spices_ply = "elf"
 porpuse = "npc"
-alligment_ply = "neutral"""
+alligment_ply = "neutral"
 
 if not spices_ply in utilites.SPECIES:
     print('Please input a valid spices')
@@ -161,6 +161,6 @@ def character_dictonary():
     full_ply["ideal"] = ideal_ply
     return full_ply
 
-f = open(f"{name_ply}.txt", "w")
+"""f = open(f"{name_ply}.txt", "w")
 f.write(("%s \n \n %s \n \n %s \n \n %s \n \n %s \n %s \n %s\n \n %s \n %s \n" % (name_ply,create_summary(), utilites.background_gener, ideal_ply,flaw_ply,bonds_ply,person_ply, skill_set_ply, modifier_ply)))
-f.close()
+f.close()"""
