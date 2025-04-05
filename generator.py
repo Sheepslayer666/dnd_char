@@ -6,10 +6,9 @@ random.shuffle(utilites.STANDARD_ARRAY)
 
 skill_set_ply = {utilites.SKILLS[i]: utilites.STANDARD_ARRAY[i] for i in range(len(utilites.SKILLS))} 
 modifyer_set = skill_set_ply.copy()
-full_ply = skill_set_ply.copy()
 summary_ply = None
 
-spices_ply = input("Do you want to generate a human a dwarf or an elf?: ")
+spices_ply = input("Do you want to generate a human a dwarf a halfling or an elf?: ")
 alligment_ply = input("Do you have an evil, good or neutral evil?: ")
 porpuse = input("npc or villian?: ")
 #Unused code yet
@@ -17,6 +16,20 @@ porpuse = input("npc or villian?: ")
 """spices_ply = "elf"
 porpuse = "npc"
 alligment_ply = "neutral"""
+
+if not spices_ply in utilites.SPECIES:
+    print('Please input a valid spices')
+if not porpuse in utilites.PORPOUSE:
+    print('Please input a valid porpuse')
+
+
+class Character:
+  def __init__(self, name, class_ply):
+    self.name = name
+    self.class_ply = class_ply
+    self.spices_ply = spices_ply
+    self.alligment_ply = alligment_ply
+    self.porpuse = porpuse
 
 """if alligment_ply != "evil" or "good" or "neutral":
     alligment_ply = "neutral"
@@ -52,6 +65,8 @@ def name_genrator():
         givenname = random.choice(utilites.elf_given_name)
     elif spices_ply == "dwarf":
         givenname = random.choice(utilites.dwarf_given_name)
+    elif spices_ply == "halfling":
+        givenname = random.choice(utilites.halfling_given_name)
     #Assignes a title or surename based on the allignment
     if alligment_ply == "evil":
         fullname = givenname + random.choice(utilites.evil_titles)
@@ -132,13 +147,19 @@ def modifier_count():
 
 flaw_ply = random.choice(utilites.FLAWS)
 bonds_ply = random.choice(utilites.BONDS)
-person_ply = "Traits: \n" + '\n'.join(random.sample(utilites.PERSONALITY_TRAIS, 2))
+person_ply = '\n'.join(random.sample(utilites.PERSONALITY_TRAIS, 2))
 modifier_ply = modifier_count()
-ideal_ply = "Ideal: " + background_ply
+ideal_ply = background_ply
 class_ply = random.choice(utilites.CLASSES)
-full_ply["class"] = class_ply
-full_ply["name"] = name_ply
-print(full_ply)
+
+def character_dictonary():
+    full_ply = skill_set_ply.copy()
+    full_ply["name"] = name_ply
+    full_ply["class"] = class_ply
+    full_ply["flwas"] = name_ply
+    full_ply["bonds"] = bonds_ply
+    full_ply["ideal"] = ideal_ply
+    return full_ply
 
 f = open(f"{name_ply}.txt", "w")
 f.write(("%s \n \n %s \n \n %s \n \n %s \n \n %s \n %s \n %s\n \n %s \n %s \n" % (name_ply,create_summary(), utilites.background_gener, ideal_ply,flaw_ply,bonds_ply,person_ply, skill_set_ply, modifier_ply)))
