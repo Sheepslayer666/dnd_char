@@ -3,17 +3,32 @@ import utilites
 
 #Randomly schuffles the standard array and makes a dictionary with the skills
 random.shuffle(utilites.STANDARD_ARRAY)
+
 skill_set_ply = {utilites.SKILLS[i]: utilites.STANDARD_ARRAY[i] for i in range(len(utilites.SKILLS))} 
-modifyer_set = {utilites.SKILLS[i]: utilites.STANDARD_ARRAY[i] for i in range(len(utilites.SKILLS))} 
+modifyer_set = skill_set_ply.copy()
+full_ply = skill_set_ply.copy()
 summary_ply = None
-"""spices_ply = input("Do you want to generate a human a dwarf or an elf?: ")
-alligment_ply = input("Do you have an evil, good or neutral evil?: ")"""
+
+spices_ply = input("Do you want to generate a human a dwarf or an elf?: ")
+alligment_ply = input("Do you have an evil, good or neutral evil?: ")
+porpuse = input("npc or villian?: ")
 #Unused code yet
-#porpuse = input("npc or villian?: ")
 #Constant vaules for testing
-spices_ply = "elf"
-alligment_ply = "neutral"
+"""spices_ply = "elf"
 porpuse = "npc"
+alligment_ply = "neutral"""
+
+"""if alligment_ply != "evil" or "good" or "neutral":
+    alligment_ply = "neutral"
+
+if spices_ply != "human" or "elf" or "dwarf":
+    spices_ply = "human"
+
+if spices_ply != "villian" or "npc" or "player":
+    spices_ply = "npc"
+
+if porpuse == "villain":
+    alligment_ply = random.choice("evil", "neutral")"""
 
 #Based on the good evil vlaies selects a random vlaue from the law chaos scale
 if alligment_ply == "good":
@@ -70,23 +85,35 @@ def ideal_generator():
 background_ply =ideal_generator()
 
 def create_summary():
-    if alligment_ply == "evil":
+    if porpuse == "npc" or porpuse == "player":
+        if alligment_ply == "evil":
+            summary_ply = f"{name_ply}" + f" was a feared {spices_ply}"
+        elif alligment_ply == "neutral":
+            summary_ply = f"{name_ply}" + f" was an fair {spices_ply}"
+        elif alligment_ply == "good":
+            summary_ply = f"{name_ply}" + f" was a wonderful {spices_ply}"
+        if background_ply == "Knowledge":
+            summary_ply = summary_ply + " who always seek Knowledge"
+        elif background_ply == "Freedom":
+            summary_ply = summary_ply + " who always fights for freedom"
+        elif background_ply == "Hope":
+            summary_ply = summary_ply + " who never loose hope"
+        elif background_ply == "Self-Reliance":
+            summary_ply = summary_ply + " who belives in self-reliance"
+        elif background_ply == "Adaptability":
+            summary_ply = summary_ply + " who is a true survivor"
+    if porpuse == "villian":
         summary_ply = f"{name_ply}" + f" was a feared {spices_ply}"
-    elif alligment_ply == "neutral":
-        summary_ply = f"{name_ply}" + f" was an okay {spices_ply}"
-    elif alligment_ply == "good":
-        summary_ply = f"{name_ply}" + f" was a wonderful {spices_ply}"
-    if background_ply == "Knowledge":
-        summary_ply = summary_ply + " who always seek Knowledge"
-    elif background_ply == "Freedom":
-        summary_ply = summary_ply + " who always fights for freedom"
-    elif background_ply == "Hope":
-        summary_ply = summary_ply + " who never loose hope"
-    elif background_ply == "Self-Reliance":
-        summary_ply = summary_ply + " who belives in self-reliance"
-    elif background_ply == "Adaptability":
-        summary_ply = summary_ply + " who is a true survivor"
+        if background_ply == "Knowledge":
+            summary_ply = summary_ply + " who always seek forbidden knowledge"
+        elif background_ply == "Freedom":
+            summary_ply = summary_ply + " who wanted his own freedom"
+        elif background_ply == "Self-Reliance":
+            summary_ply = summary_ply + " who never trusted anyone"
+        elif background_ply == "Adaptability":
+            summary_ply = summary_ply + " who survived so many tragedies"
     return summary_ply
+
 
 summary_ply = create_summary()
 
@@ -103,11 +130,15 @@ def modifier_count():
         return modifyer_set
 
 
-flaw_ply = "Flaws: \n" + random.choice(utilites.FLAWS)
-bonds_ply = "Bonds: \n" + random.choice(utilites.BONDS)
+flaw_ply = random.choice(utilites.FLAWS)
+bonds_ply = random.choice(utilites.BONDS)
 person_ply = "Traits: \n" + '\n'.join(random.sample(utilites.PERSONALITY_TRAIS, 2))
 modifier_ply = modifier_count()
 ideal_ply = "Ideal: " + background_ply
+class_ply = random.choice(utilites.CLASSES)
+full_ply["class"] = class_ply
+full_ply["name"] = name_ply
+print(full_ply)
 
 f = open(f"{name_ply}.txt", "w")
 f.write(("%s \n \n %s \n \n %s \n \n %s \n \n %s \n %s \n %s\n \n %s \n %s \n" % (name_ply,create_summary(), utilites.background_gener, ideal_ply,flaw_ply,bonds_ply,person_ply, skill_set_ply, modifier_ply)))
