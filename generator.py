@@ -11,9 +11,11 @@ summary_ply = None
 spices_ply = input("Do you want to generate a human a dwarf a halfling or an elf?: ")
 while spices_ply not in utilites.SPECIES:
     spices_ply = input("Do you want to generate a human a dwarf a halfling or an elf?: ")
+
 alligment_ply = input("Do you have an evil, good or neutral evil?: ")
 while alligment_ply not in utilites.BASE_ALLGINMENT:
     alligment_ply = input("Do you have an evil, good or neutral evil?: ")
+
 porpuse = input("npc or villian?: ")
 while porpuse not in utilites.PORPOUSE:
     porpuse = input("npc or villian?: ")
@@ -32,17 +34,6 @@ class Character:
     self.alligment_ply = alligment_ply
     self.porpuse = porpuse
 
-"""if alligment_ply != "evil" or "good" or "neutral":
-    alligment_ply = "neutral"
-
-if spices_ply != "human" or "elf" or "dwarf":
-    spices_ply = "human"
-
-if spices_ply != "villian" or "npc" or "player":
-    spices_ply = "npc"
-
-if porpuse == "villain":
-    alligment_ply = random.choice("evil", "neutral")"""
 
 #Based on the good evil vlaies selects a random vlaue from the law chaos scale
 if alligment_ply == "good":
