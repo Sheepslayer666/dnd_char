@@ -3,6 +3,7 @@ import random
 STANDARD_ARRAY = [15, 14, 13, 12, 10, 8]
 CLASSES = ["barbarian", 'bard', "fighter" , "cleric", "druid", "monk", "paladin", "ranger", "rouge", "sourcerer", "warlock", "wizard"]
 name_ply = ""
+BASE_ALLGINMENT = ["good", "evil", "neutral"]
 ALLIGNMENT_GOOD = ["Lawful good", "Neutral good", "Chaotic good"]
 ALLIGNMENT_EVIL = ["Lawful evil", "Neutral evil", "Neutral evil"]
 ALLIGNMENT_NEUT = ["Lawful neutral", "True Neutral", "Chaotic neutral"]
