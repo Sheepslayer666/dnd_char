@@ -2,11 +2,13 @@
 import random
 
 class dice:
-    def __init__(self, sides):
+    def __init__(self, sides, dies=1):
         self.sides = sides
+        self.dies = dies
 
     def roll(self):
-        return random.randint(1,self.sides)
+        return self.dies * (random.randint(1,self.sides))
+
 d2 = dice(2)
 d3 = dice(3)
 d4 = dice(4)
