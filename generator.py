@@ -20,11 +20,6 @@ porpuse = input("npc or villian?: ")
 while porpuse not in utilites.PORPOUSE:
     porpuse = input("npc or villian?: ")
 #Unused code yet
-#Constant vaules for testing
-"""spices_ply = "elf"
-porpuse = "npc"
-alligment_ply = "neutral"""
-
 
 class Character:
   def __init__(self, name, class_ply):
@@ -133,7 +128,7 @@ def modifier_count():
             if 11 >= modifyer_set[i] >= 10:
                 modifyer_set[i] = 0
             if 9 >= modifyer_set[i] >= 8:
-                modifyer_set[i] = 0
+                modifyer_set[i] = -1
         return modifyer_set
 
 
