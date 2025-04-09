@@ -18,3 +18,14 @@ while is_combat == True:
         hit = True
     else:
         hit = False
+
+while True:
+    place = ""
+    direction = 0
+    input(place)
+    if place == "w":
+        direction +=1
+        print(direction)
+    if place == "s":
+        direction -=1
+        print(direction)
