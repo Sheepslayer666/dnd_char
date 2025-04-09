@@ -1,5 +1,5 @@
 import dice
-#import generator
+import generator
 import enemies
 import player
 import math
