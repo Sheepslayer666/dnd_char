@@ -19,16 +19,6 @@ while alligment_ply not in utilites.BASE_ALLGINMENT:
 porpuse = input("npc or villian?: ")
 while porpuse not in utilites.PORPOUSE:
     porpuse = input("npc or villian?: ")
-#Unused code yet
-
-class Character:
-  def __init__(self, name, class_ply):
-    self.name = name
-    self.class_ply = class_ply
-    self.spices_ply = spices_ply
-    self.alligment_ply = alligment_ply
-    self.porpuse = porpuse
-
 
 #Based on the good evil vlaies selects a random vlaue from the law chaos scale
 if alligment_ply == "good":
