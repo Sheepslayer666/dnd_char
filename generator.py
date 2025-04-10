@@ -1,12 +1,10 @@
 import random
 import utilites
+import dice
 
 #Randomly schuffles the standard array and makes a dictionary with the skills
 random.shuffle(utilites.STANDARD_ARRAY)
-
-skill_set_ply = {utilites.SKILLS[i]: utilites.STANDARD_ARRAY[i] for i in range(len(utilites.SKILLS))} 
-modifyer_set = skill_set_ply.copy()
-summary_ply = None
+skill_set_ply = {}
 
 spices_ply = input("Do you want to generate a human a dwarf a halfling or an elf?: ")
 while spices_ply not in utilites.SPECIES:
@@ -19,7 +17,20 @@ while alligment_ply not in utilites.BASE_ALLGINMENT:
 porpuse = input("npc or villian?: ")
 while porpuse not in utilites.PORPOUSE:
     porpuse = input("npc or villian?: ")
+mode = input("What modes you want to generate the NPC SA or dice?: ")
+while porpuse not in utilites.MODES:
+    porpuse = input("What modes you want to generate the NPC SA or dice?: ")
 
+
+if mode == "SA":
+    skill_set_ply = {utilites.SKILLS[i]: utilites.STANDARD_ARRAY[i] for i in range(len(utilites.SKILLS))}
+
+elif mode == "dice":
+    skill_set_ply = {utilites.SKILLS[i]: dice.dice(20).roll() for i in range(len(utilites.SKILLS))}
+
+
+modifyer_set = skill_set_ply.copy()
+summary_ply = None
 #Based on the good evil vlaies selects a random vlaue from the law chaos scale
 if alligment_ply == "good":
     random.shuffle(utilites.ALLIGNMENT_GOOD)
@@ -129,7 +140,7 @@ modifier_ply = modifier_count()
 ideal_ply = background_ply
 class_ply = random.choice(utilites.CLASSES)
 
-def character_dictonary():
+def character_dictonary(**kwargs):
     full_ply = skill_set_ply.copy()
     full_ply["name"] = name_ply
     full_ply["class"] = class_ply
@@ -137,6 +148,8 @@ def character_dictonary():
     full_ply["bonds"] = bonds_ply
     full_ply["ideal"] = ideal_ply
     return full_ply
+
+npc_gen = character_dictonary()
 
 f = open(f"{name_ply}.txt", "w")
 f.write(("%s \n \n %s \n \n %s \n \n %s \n \n %s \n %s \n %s\n \n %s \n %s \n" % (name_ply,create_summary(), utilites.background_gener, "Ideals: " + ideal_ply, "Flaws: "+ flaw_ply,"Bonds: " + bonds_ply,"Prersonality traits: " + person_ply,skill_set_ply, modifier_ply)))
