@@ -10,19 +10,22 @@ spices_ply = input("Do you want to generate a human a dwarf a halfling or an elf
 while spices_ply not in utilites.SPECIES:
     spices_ply = input("Do you want to generate a human a dwarf a halfling or an elf?: ")
 
-alligment_ply = input("Do you have an evil, good or neutral evil?: ")
-while alligment_ply not in utilites.BASE_ALLGINMENT:
-    alligment_ply = input("Do you have an evil, good or neutral evil?: ")
+alligment_ply = input("Do you have an evil, good, neutral, evil or random?: ")
+while alligment_ply not in utilites.BASE_ALLGINMENT or alligment_ply != "random":
+    alligment_ply = ("Do you have an evil, good, neutral, evil or random?: ")
+
+
 
 porpuse = input("npc or villian?: ")
 while porpuse not in utilites.PORPOUSE:
     porpuse = input("npc or villian?: ")
-mode = input("What modes you want to generate the NPC SA or dice?: ")
-while porpuse not in utilites.MODES:
-    porpuse = input("What modes you want to generate the NPC SA or dice?: ")
+#support to modes of creating a character random rolls by dice or SA
+mode = input("What modes you want to generate the NPC, sa (standard array) or dice?: ")
+while mode not in utilites.MODES:
+    mode = input("What modes you want to generate the NPC, sa (standard array) or dice?: ")
 
 
-if mode == "SA":
+if mode == "sa":
     skill_set_ply = {utilites.SKILLS[i]: utilites.STANDARD_ARRAY[i] for i in range(len(utilites.SKILLS))}
 
 elif mode == "dice":
@@ -41,8 +44,22 @@ elif alligment_ply == "evil":
 elif alligment_ply == "neutral":
     random.shuffle(utilites.ALLIGNMENT_NEUT)
     selected_allignment = utilites.ALLIGNMENT_NEUT[0]
+elif alligment_ply == "random":
+    base = random.choice(utilites.BASE_ALLGINMENT)
+    if base == "neutral":
+        selected_allignment = "True " + base
+    else:
+        selected_allignment = random.choice(["Lawful ", "Chaotic "]) + base
 else:
     print("Sorry this alligment is not supported")
+
+if alligment_ply == "random":
+    if "neutral" in selected_allignment:
+        alligment_ply = "neutral"
+    elif "evil" in selected_allignment:
+        alligment_ply = "evil"
+    elif "good" in selected_allignment:
+        alligment_ply = "good"
 
 def name_genrator():
     #Takes a radnom name based on the spices and makes a random surename indifferent for the spices
@@ -152,5 +169,5 @@ def character_dictonary(**kwargs):
 npc_gen = character_dictonary()
 
 f = open(f"{name_ply}.txt", "w")
-f.write(("%s \n \n %s \n \n %s \n \n %s \n \n %s \n %s \n %s\n \n %s \n %s \n" % (name_ply,create_summary(), utilites.background_gener, "Ideals: " + ideal_ply, "Flaws: "+ flaw_ply,"Bonds: " + bonds_ply,"Prersonality traits: " + person_ply,skill_set_ply, modifier_ply)))
+f.write(("%s \n \n %s \n \n %s \n \n %s \n \n %s \n \n %s \n %s \n %s\n \n %s \n %s \n" % (name_ply, selected_allignment ,create_summary(), utilites.background_gener, "Ideals: " + ideal_ply, "Flaws: "+ flaw_ply,"Bonds: " + bonds_ply,"Prersonality traits: " + person_ply,skill_set_ply, modifier_ply)))
 f.close()
