@@ -10,9 +10,9 @@ spices_ply = input("Do you want to generate a human a dwarf a halfling or an elf
 while spices_ply not in utilites.SPECIES:
     spices_ply = input("Do you want to generate a human a dwarf a halfling or an elf?: ")
 
-alligment_ply = input("Do you have an evil, good, neutral, evil or random?: ")
-while alligment_ply not in utilites.BASE_ALLGINMENT or alligment_ply != "random":
-    alligment_ply = ("Do you have an evil, good, neutral, evil or random?: ")
+alligment_ply = input("Do you want to have a good, neutral, evil or random NPC?: ")
+while alligment_ply not in ["good", "evil", "neutral", "random"]:
+    alligment_ply = input("Do you want to have a good, neutral, evil or random NPC?: ")
 
 
 
