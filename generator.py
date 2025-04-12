@@ -7,23 +7,29 @@ random.shuffle(utilites.STANDARD_ARRAY)
 skill_set_ply = {}
 
 spices_ply = input("Do you want to generate a human a dwarf a halfling or an elf?: ")
-while spices_ply not in utilites.SPECIES:
+while spices_ply.lower() not in utilites.SPECIES:
     spices_ply = input("Do you want to generate a human a dwarf a halfling or an elf?: ")
 
 alligment_ply = input("Do you want to have a good, neutral, evil or random NPC?: ")
-while alligment_ply not in ["good", "evil", "neutral", "random"]:
+while alligment_ply not in utilites.BASE_ALLGINMENT and alligment_ply != "random":
     alligment_ply = input("Do you want to have a good, neutral, evil or random NPC?: ")
 
+class_ply = input("What class do you want?: ")
+while class_ply.lower() not in utilites.CLASSES and class_ply != "random":
+    class_ply = input("What class do you wan?: ")
 
 
 porpuse = input("npc or villian?: ")
-while porpuse not in utilites.PORPOUSE:
+while porpuse.lower() not in utilites.PORPOUSE:
     porpuse = input("npc or villian?: ")
 #support to modes of creating a character random rolls by dice or SA
 mode = input("What modes you want to generate the NPC, sa (standard array) or dice?: ")
-while mode not in utilites.MODES:
+while mode.lower() not in utilites.MODES:
     mode = input("What modes you want to generate the NPC, sa (standard array) or dice?: ")
 
+
+if class_ply == "random":
+    class_ply = random.choice(utilites.CLASSES)
 
 if mode == "sa":
     skill_set_ply = {utilites.SKILLS[i]: utilites.STANDARD_ARRAY[i] for i in range(len(utilites.SKILLS))}
@@ -155,7 +161,6 @@ bonds_ply = random.choice(utilites.BONDS)
 person_ply = '\n'.join(random.sample(utilites.PERSONALITY_TRAIS, 2))
 modifier_ply = modifier_count()
 ideal_ply = background_ply
-class_ply = random.choice(utilites.CLASSES)
 
 def character_dictonary(**kwargs):
     full_ply = skill_set_ply.copy()
