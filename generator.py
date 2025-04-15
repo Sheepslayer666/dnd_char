@@ -18,6 +18,11 @@ class_ply = input("What class do you want?: ")
 while class_ply.lower() not in utilites.CLASSES and class_ply != "random":
     class_ply = input("What class do you wan?: ")
 
+name_ply = input("Do you want a name or wanto generate randomly? ")
+if name_ply != "random":
+    answer = input(f"Are you sure you wanf to name your character: {name_ply} yes or no?")
+    if answer.lower() == "no":
+        name_ply = input("Do you want a name or wanto generate randomly? ")
 
 porpuse = input("npc or villian?: ")
 while porpuse.lower() not in utilites.PORPOUSE:
@@ -87,7 +92,8 @@ def name_genrator():
         fullname = givenname + random.choice(utilites.good_titles)
     return fullname
 
-name_ply = name_genrator()
+if name_ply == "random":
+    name_ply = name_genrator()
 
 def ideal_generator():
     #Generates randomised backgorund
