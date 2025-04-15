@@ -7,9 +7,12 @@ class dice:
         self.dies = dies
     def roll(self):
         a = 0
-        for x in range(self.dies):
-                a += random.randint(1,self.sides)
-        return a
+        try:
+            for x in range(self.dies):
+                    a += random.randint(1,self.sides)
+            return a
+        except:
+            print("Error")
 
 d2 = dice(2)
 d3 = dice(3)
